@@ -1,15 +1,13 @@
-// @lovable.dev/vite-tanstack-config includes tanstackStart, viteReact, tailwindcss, tsConfigPaths,
-// nitro (default cloudflare). We disable the default nitro target with `cloudflare: false`
-// and add nitro with the Vercel preset so the build deploys cleanly to Vercel.
+// @lovable.dev/vite-tanstack-config bundles tanstackStart, viteReact, tailwindcss, tsConfigPaths
+// and nitro (defaults to cloudflare). We pin nitro to the Vercel preset for production deploys.
+// Inside the Lovable sandbox build the preset is forced to cloudflare automatically.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
-import { nitro } from "nitro/vite";
 
 export default defineConfig({
-  cloudflare: false,
   tanstackStart: {
     server: { entry: "server" },
   },
-  vite: {
-    plugins: [nitro({ preset: "vercel" })],
+  nitro: {
+    preset: "vercel",
   },
 });
