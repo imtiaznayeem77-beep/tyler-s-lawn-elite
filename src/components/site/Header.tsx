@@ -32,25 +32,29 @@ export function Header() {
     <header
       className={[
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
+        // On mobile/tablet always show solid background so the title is
+        // readable from first paint. On xl+ keep the transparent-over-hero
+        // treatment that fades into solid after scroll.
+        "bg-background/95 backdrop-blur-xl border-b border-border/60 shadow-soft",
         scrolled
-          ? "bg-background/85 backdrop-blur-xl border-b border-border/60 shadow-soft"
-          : "bg-transparent",
+          ? "xl:bg-background/85 xl:backdrop-blur-xl xl:border-b xl:border-border/60 xl:shadow-soft"
+          : "xl:bg-transparent xl:backdrop-blur-none xl:border-b-0 xl:shadow-none",
       ].join(" ")}
     >
       <div className="container-px flex h-16 md:h-20 items-center justify-between gap-4">
-        <Link to="/" className="flex items-center gap-2.5 group">
+        <Link to="/" className="flex items-center gap-2.5 group min-w-0">
           <img
             src={logo}
             alt="Landscapes By Tyler"
             width={44}
             height={44}
-            className="h-10 w-10 md:h-11 md:w-11 rounded-full object-cover ring-1 ring-border/60"
+            className="h-10 w-10 md:h-11 md:w-11 rounded-full object-cover ring-1 ring-border/60 shrink-0"
           />
-          <span className="flex flex-col leading-tight">
-            <span className={["font-display font-bold text-base md:text-lg tracking-tight", scrolled ? "text-foreground" : "text-white drop-shadow"].join(" ")}>
+          <span className="flex flex-col leading-tight min-w-0">
+            <span className={["font-display font-bold text-base md:text-lg tracking-tight truncate text-foreground", scrolled ? "xl:text-foreground" : "xl:text-white xl:drop-shadow"].join(" ")}>
               Landscapes By Tyler
             </span>
-            <span className={["text-[10px] uppercase tracking-[0.18em] font-semibold", scrolled ? "text-primary" : "text-primary-glow drop-shadow"].join(" ")}>
+            <span className={["text-[10px] uppercase tracking-[0.18em] font-semibold truncate text-primary", scrolled ? "xl:text-primary" : "xl:text-primary-glow xl:drop-shadow"].join(" ")}>
               Lawn Care · Landscapes
             </span>
           </span>
@@ -79,12 +83,13 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden md:flex items-center gap-2">
+        <div className="hidden md:flex items-center gap-2 shrink-0">
           <a
             href={SITE.phoneHref}
             className={[
               "inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-sm font-semibold transition-colors",
-              scrolled ? "text-primary hover:bg-primary/10" : "text-white hover:bg-white/10",
+              "text-primary hover:bg-primary/10",
+              scrolled ? "xl:text-primary xl:hover:bg-primary/10" : "xl:text-white xl:hover:bg-white/10",
             ].join(" ")}
           >
             <Phone className="h-4 w-4" />
@@ -103,10 +108,7 @@ export function Header() {
         <button
           onClick={() => setOpen((v) => !v)}
           aria-label="Open menu"
-          className={[
-            "xl:hidden inline-flex items-center justify-center h-11 w-11 rounded-full transition-colors",
-            scrolled ? "bg-primary/10 text-primary" : "bg-white/15 text-white backdrop-blur",
-          ].join(" ")}
+          className="xl:hidden inline-flex items-center justify-center h-11 w-11 rounded-full border border-primary/30 text-primary shrink-0"
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>

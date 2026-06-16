@@ -197,3 +197,67 @@
 @utility animate-float {
   animation: float-slow 6s ease-in-out infinite;
 }
+
+/* ------------------------------------------------------------------
+ * iOS Safari fallback: Tailwind v4 emits color-mix(in oklab, …) for
+ * opacity modifiers like `bg-primary/10`. On some iOS Safari versions
+ * this fails on oklch() inputs and the element renders as solid
+ * primary. Provide explicit, solid token-based fallbacks for the
+ * patterns actually used across the site so icons, eyebrow pills,
+ * and chips render correctly everywhere.
+ * ------------------------------------------------------------------ */
+.bg-primary\/5  { background-color: oklch(0.96 0.015 145); }
+.bg-primary\/10 { background-color: oklch(0.93 0.03 145); }
+.bg-primary\/15 { background-color: oklch(0.90 0.04 145); }
+.bg-primary\/20 { background-color: oklch(0.86 0.06 145); }
+.hover\:bg-primary\/5:hover  { background-color: oklch(0.96 0.015 145); }
+.hover\:bg-primary\/10:hover { background-color: oklch(0.93 0.03 145); }
+
+.border-primary\/20 { border-color: oklch(0.82 0.07 145); }
+.border-primary\/30 { border-color: oklch(0.75 0.09 145); }
+.hover\:border-primary\/20:hover { border-color: oklch(0.82 0.07 145); }
+.hover\:border-primary\/30:hover { border-color: oklch(0.75 0.09 145); }
+
+.text-primary\/15 { color: oklch(0.86 0.06 145); }
+
+.bg-white\/10 { background-color: rgba(255, 255, 255, 0.10); }
+.bg-white\/15 { background-color: rgba(255, 255, 255, 0.15); }
+.bg-white\/20 { background-color: rgba(255, 255, 255, 0.20); }
+.hover\:bg-white\/10:hover { background-color: rgba(255, 255, 255, 0.10); }
+
+.text-white\/75 { color: rgba(255, 255, 255, 0.75); }
+.text-white\/85 { color: rgba(255, 255, 255, 0.85); }
+.text-white\/90 { color: rgba(255, 255, 255, 0.90); }
+.hover\:text-white\/90:hover { color: rgba(255, 255, 255, 0.90); }
+
+.border-border\/50 { border-color: oklch(0.92 0.015 145); }
+.border-border\/60 { border-color: oklch(0.90 0.02 145); }
+
+.bg-background\/85 { background-color: oklch(0.985 0.012 145 / 0.92); }
+.bg-background\/95 { background-color: oklch(0.985 0.012 145 / 0.97); }
+
+.text-foreground\/80 { color: oklch(0.30 0.02 150); }
+.text-foreground\/85 { color: oklch(0.26 0.02 150); }
+
+.bg-accent\/30 { background-color: oklch(0.96 0.02 145); }
+.bg-accent\/40 { background-color: oklch(0.95 0.025 145); }
+
+/* ------------------------------------------------------------------
+ * Stabilize cards on iOS scroll. Touch devices trigger hover styles
+ * on scroll causing visible "shake". Disable hover-translate on
+ * pointer:coarse devices, and promote cards to their own GPU layer
+ * to avoid repaint jitter from the address-bar resize.
+ * ------------------------------------------------------------------ */
+@media (hover: none) {
+  .hover\:-translate-y-0\.5:hover,
+  .hover\:-translate-y-1:hover,
+  .group:hover .group-hover\:scale-110 {
+    transform: none !important;
+  }
+}
+.shadow-soft,
+.shadow-elegant {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform;
+}
