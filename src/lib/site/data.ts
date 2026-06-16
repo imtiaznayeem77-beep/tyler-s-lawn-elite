@@ -14,7 +14,6 @@ export const SERVICES: ServiceCard[] = [
     short:
       "Crisp, evenly cut lawns with clean stripes — professional mowing on a schedule that keeps your grass healthy.",
     image: mowing,
-    to: "/lawn-mowing",
   },
   {
     slug: "lawn-edging",
@@ -43,7 +42,6 @@ export const SERVICES: ServiceCard[] = [
     short:
       "Full-property cleanups for overgrown yards, debris, leaves and brush — restoring your lawn to its best.",
     image: cleanup,
-    to: "/yard-cleanup",
   },
   {
     slug: "fall-cleanup",
@@ -58,7 +56,6 @@ export const SERVICES: ServiceCard[] = [
     short:
       "Weekly and bi-weekly maintenance programs so your lawn always looks its best — without the hassle.",
     image: maintenance,
-    to: "/lawn-maintenance",
   },
 ];
 

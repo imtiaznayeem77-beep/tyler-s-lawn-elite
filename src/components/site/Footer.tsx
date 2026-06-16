@@ -41,7 +41,6 @@ export function Footer() {
                 ["/about", "About"],
                 ["/services", "All Services"],
                 ["/gallery", "Gallery"],
-                ["/reviews", "Reviews"],
                 ["/contact", "Contact"],
               ].map(([to, label]) => (
                 <li key={to}>
@@ -54,9 +53,9 @@ export function Footer() {
           <div>
             <h4 className="font-display font-semibold text-sm uppercase tracking-widest text-primary-glow">Services</h4>
             <ul className="mt-4 space-y-2.5 text-sm text-white/80">
-              <li><Link to="/lawn-mowing" className="hover:text-primary-glow">Lawn Mowing</Link></li>
-              <li><Link to="/lawn-maintenance" className="hover:text-primary-glow">Lawn Maintenance</Link></li>
-              <li><Link to="/yard-cleanup" className="hover:text-primary-glow">Yard Cleanup</Link></li>
+              <li><Link to="/services" className="hover:text-primary-glow">Lawn Mowing</Link></li>
+              <li><Link to="/services" className="hover:text-primary-glow">Lawn Maintenance</Link></li>
+              <li><Link to="/services" className="hover:text-primary-glow">Yard Cleanup</Link></li>
               <li><Link to="/services" className="hover:text-primary-glow">Edging & Trimming</Link></li>
               <li><Link to="/services" className="hover:text-primary-glow">Weed Removal</Link></li>
               <li><Link to="/services" className="hover:text-primary-glow">Fall Cleanups</Link></li>
