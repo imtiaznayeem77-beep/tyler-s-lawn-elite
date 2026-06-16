@@ -56,7 +56,7 @@ export function ServiceGrid({ limit }: { limit?: number }) {
                   <p className="text-sm text-muted-foreground leading-relaxed">{s.short}</p>
                   <div className="mt-5 flex items-center justify-between">
                     <span className="text-xs uppercase tracking-widest font-semibold text-primary">
-                      {s.to ? "Learn more" : "Included service"}
+                      Get Free Estimate
                     </span>
                     <span className="h-9 w-9 rounded-full bg-primary/10 text-primary flex items-center justify-center group-hover:gradient-primary group-hover:text-primary-foreground transition-all">
                       <ArrowRight className="h-4 w-4" />
@@ -65,12 +65,8 @@ export function ServiceGrid({ limit }: { limit?: number }) {
                 </div>
               </motion.div>
             );
-            return s.to ? (
-              <Link key={s.slug} to={s.to}>
-                {Card}
-              </Link>
-            ) : (
-              <Link key={s.slug} to="/services">
+            return (
+              <Link key={s.slug} to="/contact">
                 {Card}
               </Link>
             );
